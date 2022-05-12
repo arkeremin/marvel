@@ -1,2 +1,2 @@
 # Домашка
-[DEMO APP](https://marvel.arker.site)
+[Live demo app](https://marvel.arker.site)
