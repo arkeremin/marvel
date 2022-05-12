@@ -8,7 +8,7 @@
   <div class="header-search">
     <input  type="search"
             placeholder="Кого мы ищем ?"
-            v-model="search"
+            v-model.trim="search"
             @input="heroSearch(search)"
             autofocus>
   </div>

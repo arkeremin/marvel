@@ -1,7 +1,6 @@
 <template>
  <footer class="footer-wrap">
     <p>Домашняя работа</p>
-    <!-- <p>НЕТОЛОГИЯ</p> -->
     <p>НЕТОЛОГИЯ<br/>Первые шаги в JavaScript: создаём сайт и приложение</p>
     <p>telegram: <a href="https://t.me/ARkER" target="_blank">@arker</a></p>
   </footer>

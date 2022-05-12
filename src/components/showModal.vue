@@ -45,22 +45,13 @@
 <script>
 export default {
   name: 'showModal',   
-  
-  props:  {
+  props: {
     heroData: Object,
   },
-
   methods: {
      scrollerM: function () {
-      console.log('Я работаю в MODAL!')
       document.body.classList.toggle('body-scroll-off')
     },
-  },
-
-  mounted () {
-    console.log('MODAL NOW!')
-    // let modalOpen = document.getElementById("modal-scroll")
-    // modalOpen.classList.toggle("modal-scroll")
   },
 }
 </script>
