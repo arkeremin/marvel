@@ -13,13 +13,12 @@
   <!-- Заголовок: лого и поиск -->
   <ShowHeader :heroSearch="heroSearchData"/>
 
-
   <!-- Ждём данные -->
   <ShowLoader v-if="loading"/>
 
   <!-- DEbug -->
   <!-- <div class="debug"><pre>Ищем: {{search}}</pre></div> -->
-
+  <div class="debug"><pre>{{heroesFilter}}</pre></div>
 
   <!-- Основной контент: вывод данных -->
   <main class="main-wrap">
@@ -47,7 +46,6 @@
   </main>
   <!-- /Основной контент: данные -->
 
-
   <!-- Подвал -->
   <ShowFooter/>
 
@@ -62,19 +60,21 @@ import ShowModal  from "./components/showModal.vue";
 import ShowFooter from "./components/showFooter.vue";
 
 export default {
+
   name: 'App',
+  
   components: {
     ShowHeader,
     ShowLoader,
     ShowModal,
     ShowFooter,
-},
+  },
 
   data() {
     return {
       loading: false,
       heroModalShow: false,
-      Heroes: null,
+      Heroes: undefined,
       heroID: 0,
       search: '',
       test: 'red',
@@ -82,14 +82,17 @@ export default {
   },
 
   methods: {
+    
     arrHeroes: function() {
       return fetch('https://netology-api-marvel.herokuapp.com/characters')
       .then(res => res.json())
       .then(json => this.Heroes = json)
     },
+
     heroSearchData: function(value) {
       this.search = value
     },
+
     randDeg: function (min, max) {
       min = Math.ceil(min)
       max = Math.floor(max)
@@ -97,19 +100,24 @@ export default {
       let classDeg = 'transform: rotate(' + valueDeg + 'deg);'
       return classDeg
     },
+
     scroller: function () {
-      console.log('Я работаю!')
       document.body.classList.toggle('body-scroll-off')
-      // let modalOpen = document.getElementById("modal-scroll");
-      // modalOpen.classList.toggle("modal-scroll");
     },
+
   },
 
   computed: {
-    
+    heroesFilter: function () {
+      let search = this.search
+      return console.log (search)
+    },
+
   },
 
   async mounted() {
+    console.clear()
+    console.log('Start APP')
     this.loading = true
     await this.arrHeroes()
     this.loading = false
@@ -143,10 +151,7 @@ body::-webkit-scrollbar-thumb,
 }
 
 html, body {font-family: 'Roboto', sans-serif;}
-body {
-  background-color: var(--color-grey);
-  color: var(--color-white);
-}
+body {background-color: var(--color-grey); color: var(--color-white);}
 
 .page-wrap {display: block; width: 1200px; margin: 0 auto;}
 .debug {background-color: var(--color-red); color: var(--color-white);}
@@ -170,13 +175,8 @@ body {
   transform: scale(1.1, 1.1) rotate(0deg) !important;
   transition: all 0.3s;
 }
-
-
 .hero-photo {display: block;}
-.hero-photo > img {
-  display: block; width: 170px; height: 170px;
-  
-}
+.hero-photo > img {display: block; width: 170px; height: 170px;}
 .hero-name {
   display: flex; align-items: center; justify-content: center;
   width: 100%; height: 50px;
@@ -189,6 +189,5 @@ body {
 @media screen and (max-width: 1200px){ 
   .page-wrap {width: auto;}
   .polaroid {filter: none; transform: scale(1, 1);}
-  
 }
 </style>
